@@ -7,6 +7,10 @@ some scripts for daily usage
 
 Shows the current state of the battery for a notebook.
 
+## pullAllSubdirectoryies.sh
+
+make a `git pull` on all subdirectories.
+
 Contact
 -------
 
