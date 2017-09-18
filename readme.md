@@ -11,6 +11,14 @@ Shows the current state of the battery for a notebook.
 
 make a `git pull` on all subdirectories.
 
+## lock.sh
+
+locks the current stream when 
+
+    xscreensaver &
+
+is activated.
+
 Contact
 -------
 
