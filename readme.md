@@ -19,6 +19,12 @@ locks the current stream when
 
 is activated.
 
+## docker_reset.sh
+
+* stops the docker deamon
+* delete /var/lib/docker recursively
+* starts the docker daemon
+
 Contact
 -------
 
