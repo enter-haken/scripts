@@ -25,6 +25,12 @@ is activated.
 * delete /var/lib/docker recursively
 * starts the docker daemon
 
+## schema.sh
+
+generate orm like database schema from postgresql db
+
+    ./schema.sh | dot -Tpng > schema.png
+
 Contact
 -------
 
