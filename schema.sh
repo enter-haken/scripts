@@ -1,7 +1,34 @@
 #!/bin/bash
 
-# todo: introduce parameter database and schema
-psql -U postgres -c "
+# https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+
+    case $key in
+        -u|--user)
+            USER="$2"
+            shift 2 # shift to next parameter
+            ;;
+        -s|--schema)
+            SCHEMA="$2"
+            shift 2 # shift to next parameter
+            ;;
+    esac
+done
+set -- "$POSITIONAL[@]"
+
+if [ -z "$USER" ]; then
+    USER="postgres"
+fi
+
+if [ -z "$SCHEMA" ]; then
+    SCHEMA="default"
+fi
+
+psql -U $USER -c "
 
 SELECT c.table_name, 
 	c.column_name, 
@@ -48,7 +75,7 @@ SELECT c.table_name,
 	
 FROM information_schema.columns c 
 	JOIN information_schema.tables t on c.table_name = t.table_name
-WHERE c.table_schema = 'public' AND t.table_type = 'BASE TABLE'" | sed 's/, /<BR\/>/g' | head -n -2 | tail -n+3 | awk -F"|" '
+WHERE c.table_schema = '$SCHEMA' AND t.table_type = 'BASE TABLE'" | sed 's/, /<BR\/>/g' | head -n -2 | tail -n+3 | awk -F"|" '
 function ltrim(s) {
     sub(/^[ \t\r\n]+/, "", s);
     return s
