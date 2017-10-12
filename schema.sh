@@ -12,6 +12,10 @@ do
             USER="$2"
             shift 2 # shift to next parameter
             ;;
+        -d|--database)
+            DATABASE="$2"
+            shift 2 # shift to next parameter
+            ;;
         -s|--schema)
             SCHEMA="$2"
             shift 2 # shift to next parameter
@@ -24,11 +28,15 @@ if [ -z "$USER" ]; then
     USER="postgres"
 fi
 
-if [ -z "$SCHEMA" ]; then
-    SCHEMA="default"
+if [ -z "$DATABASE" ]; then
+    DATABASE="postgres"
 fi
 
-psql -U $USER -c "
+if [ -z "$SCHEMA" ]; then
+    SCHEMA="public"
+fi
+
+psql -U $USER -d $DATABASE -c "
 
 SELECT c.table_name, 
 	c.column_name, 
