@@ -35,6 +35,17 @@ generate erm like database schema from postgresql db
 * `-d|--database` database name (default: `postgres`)
 * `-s|--schema` database schema (default: `public`)
 
+
+## db_init
+
+generate some inital sql files for bootsrapping a postgres database
+
+    db_init -u postgres -s test -d postgres
+
+* `-u|--user` database user (default: `postgres`)
+* `-d|--database` database name (default: `postgres`)
+* `-s|--schema` database schema (default: `public`)
+
 Contact
 -------
 
