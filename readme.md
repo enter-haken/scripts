@@ -27,9 +27,13 @@ is activated.
 
 ## schema.sh
 
-generate orm like database schema from postgresql db
+generate erm like database schema from postgresql db
 
     ./schema.sh | dot -Tpng > schema.png
+
+* `-u|--user` database user (default: `postgres`)
+* `-d|--database` database name (default: `postgres`)
+* `-s|--schema` database schema (default: `public`)
 
 Contact
 -------
