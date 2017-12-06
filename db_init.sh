@@ -36,18 +36,37 @@ if [ -z "$DATABASE" ]; then
     DATABASE="postgres"
 fi
 
-
 cat <<EOT >init.sql
 DROP SCHEMA IF EXISTS $SCHEMA CASCADE;
 CREATE SCHEMA $SCHEMA;
 
 -- this is needed for gen_random_uuid();
+-- the gen_random_uuid function will be created in the first schema
+-- wich appears in the search path
+-- the default is the public schema 
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
-CREATE OR REPLACE LANGUAGE plpython3u;
+
+-- when postgres is compiled with python support
+-- CREATE OR REPLACE LANGUAGE plpython3u;
+EOT
+
+cat <<EOT > tables.sql
+SET search_path TO $SCHEMA,public;
+
+-- Database tables can be added here
+-- note: if more than one sql file is needed, it has to be added to the Makefile
+
+-- CREATE TABLE test(
+--     id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
+--     test VARCHAR(254) NOT NULL
+-- );
+
 EOT
 
 cat <<EOT >postcreate.sql
 SET search_path TO $SCHEMA,public;
+
+-- this script should be executed after all DDL stuff is done.
 
 CREATE FUNCTION metadata_trigger() RETURNS TRIGGER AS \$\$
 BEGIN
@@ -62,7 +81,6 @@ END
 
 -- add created_at and updated_at columns to every table
 -- and add update trigger to every table
--- todo: add parameter for schema
 
 DO \$\$
 DECLARE
@@ -85,8 +103,18 @@ END
 \$\$ LANGUAGE plpgsql
 EOT
 
+cat <<EOT > seed.sql
+SET search_path TO $SCHEMA,public;
+
+-- any seed operations can be added here
+
+-- INSERT INTO test (test) VALUES ('TEST');
+EOT
+
 cat <<EOT > Makefile
 init:
 	psql -U $USER -d $DATABASE -f init.sql
+	psql -U $USER -d $DATABASE -f tables.sql
 	psql -U $USER -d $DATABASE -f postcreate.sql
+	psql -U $USER -d $DATABASE -f seed.sql
 EOT
