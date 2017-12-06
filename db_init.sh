@@ -29,22 +29,16 @@ do
 done
 set -- "$POSITIONAL[@]"
 
-if [ -z "$USER" ]; then
-    USER="postgres"
-fi
-
-if [ -z "$SCHEMA" ]; then
-    SCHEMA="public"
-fi
-
-if [ -z "$DATABASE" ]; then
-    DATABASE="postgres"
-fi
-
 if [ ! -z "$HELP" ]; then
+    echo "db_init"
+    echo "======="
+    echo ""
+    echo "This script generates a scaffold for creating a database from scratch."
+    echo ""
+    echo "parameters:"
+    echo "-s | --schema: database schema (mandatory)"
     echo "-u | --user: database user name" 
-    echo "-d | --database: database name (database must exist, default \"postgres\")"
-    echo "-s | --schema: database schema (default: \"public\")"
+    echo "-d | --database: database name, where the schema is created (database must exist, default \"postgres\")"
     echo ""
     echo "This script creates the following files:"
     echo ""
@@ -67,6 +61,19 @@ if [ ! -z "$HELP" ]; then
     exit 0
 fi
 
+if [ -z "$USER" ]; then
+    USER="postgres"
+fi
+
+if [ -z "$SCHEMA" ]; then
+    echo "missing mandatory -s | --schema"
+    echo "when the Makefile is executed, the schema will be dropped if it exists!"
+    exit 1
+fi
+
+if [ -z "$DATABASE" ]; then
+    DATABASE="postgres"
+fi
 
 cat <<EOT >init.sql
 DROP SCHEMA IF EXISTS $SCHEMA CASCADE;
