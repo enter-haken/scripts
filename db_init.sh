@@ -20,6 +20,11 @@ do
             SCHEMA="$2"
             shift 2 # shift to next parameter
             ;;
+        -h|--help)
+            HELP="HELP"
+            shift 1 # shift to next parameter
+            ;;
+ 
     esac
 done
 set -- "$POSITIONAL[@]"
@@ -35,6 +40,33 @@ fi
 if [ -z "$DATABASE" ]; then
     DATABASE="postgres"
 fi
+
+if [ ! -z "$HELP" ]; then
+    echo "-u | --user: database user name" 
+    echo "-d | --database: database name (database must exist, default \"postgres\")"
+    echo "-s | --schema: database schema (default: \"public\")"
+    echo ""
+    echo "This script creates the following files:"
+    echo ""
+    echo "init.sql"
+    echo "- recreate schema (drops everything related to the schema)"
+    echo "- creates pgcrypto extension if not exists."
+    echo ""
+    echo "tables.sql"
+    echo "- this file contains DDL related stuff like CREATE TABLE ..."
+    echo ""
+    echo "postcreate.sql"
+    echo "- add additional COLUMNS like created_at to every table of the new database schema"
+    echo "- add UPDATE TRIGGER for every table"
+    echo ""
+    echo "seed.sql"
+    echo "- add some start values for the newly created tables"
+    echo ""
+    echo "Makefile"
+    echo "- (re)create the database schema"
+    exit 0
+fi
+
 
 cat <<EOT >init.sql
 DROP SCHEMA IF EXISTS $SCHEMA CASCADE;
