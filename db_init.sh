@@ -42,6 +42,9 @@ if [ ! -z "$HELP" ]; then
     echo ""
     echo "This script creates the following files:"
     echo ""
+    echo "clean.sql"
+    echo "- drops schema"
+    echo ""
     echo "init.sql"
     echo "- recreate schema (drops everything related to the schema)"
     echo "- creates pgcrypto extension if not exists."
@@ -74,9 +77,11 @@ fi
 if [ -z "$DATABASE" ]; then
     DATABASE="postgres"
 fi
+cat <<EOT >clean.sql
+DROP SCHEMA IF EXISTS $SCHEMA CASCADE;
+EOT
 
 cat <<EOT >init.sql
-DROP SCHEMA IF EXISTS $SCHEMA CASCADE;
 CREATE SCHEMA $SCHEMA;
 
 -- this is needed for gen_random_uuid();
@@ -151,9 +156,31 @@ SET search_path TO $SCHEMA,public;
 EOT
 
 cat <<EOT > Makefile
-init:
+.PHONY: help clean generate seed createdb dropdb
+help:
+	@echo "clean - drops schema $SCHEMA"
+	@echo "generate - create schema, insert tables..."
+	@echo "seed - insert inital values for tables"
+	@echo "createdb - creates database $DATABASE"
+	@echo "dropdb - drops database $DATABASE"
+	@echo "all - target for: clean, generate, seed"
+
+clean:
+	psql -U $USER -d $DATABASE -f clean.sql
+
+generate:
 	psql -U $USER -d $DATABASE -f init.sql
 	psql -U $USER -d $DATABASE -f tables.sql
 	psql -U $USER -d $DATABASE -f postcreate.sql
+
+seed:
 	psql -U $USER -d $DATABASE -f seed.sql
+
+createdb:
+	createdb -U $USER $DATABASE
+
+dropdb:
+	dropdb -U $USER $DATABASE
+
+all: clean generate seed
 EOT
