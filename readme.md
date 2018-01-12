@@ -46,6 +46,10 @@ generate some inital sql files for bootsrapping a postgres database
 * `-d|--database` database name (default: `postgres`)
 * `-s|--schema` database schema (default: `public`)
 
+# myip
+
+gets your current external ip address
+
 Contact
 -------
 
