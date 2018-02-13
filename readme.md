@@ -46,6 +46,17 @@ generate some inital sql files for bootsrapping a postgres database
 * `-d|--database` database name (default: `postgres`)
 * `-s|--schema` database schema (default: `public`)
 
+## book_init
+
+generate some inital markdown files for bootstrapping a book
+
+    book_init -a "Jan Frederik Hake" -t "Awesome book" -f awesome
+
+* `-a|--author` author of the book (mandatory)
+* `-t|--title` book title (mandatory)
+* `-f|--filename` filename used for the pdf / tex file without any extension (mandatory)
+* `-v|--pdfviewer` default pdf viewer (default `evince`)
+
 # myip
 
 gets your current external ip address
