@@ -125,7 +125,7 @@ SET search_path TO $SCHEMA,public;
 --    PRIMARY KEY(id_user_account, id_role)
 --);
 --
---CREATE TABLE privilage(
+--CREATE TABLE privilege(
 --	id UUID NOT NULL PRIMARY KEY DEFAULT gen_random_uuid(),
 --    name VARCHAR(80),
 --    description VARCHAR(254)
