@@ -193,9 +193,8 @@ help:
 	@echo "clean - drops schema $SCHEMA"
 	@echo "generate - create schema, insert tables..."
 	@echo "seed - insert inital values for tables"
-	@echo "createdb - creates database $DATABASE"
-	@echo "dropdb - drops database $DATABASE"
-	@echo "all - target for: clean, generate, seed"
+	@echo "createdb - creates database $DATABASE, if not exists"
+	@echo "all - target for: createdb, clean, generate, seed"
 
 clean:
 	psql -U $USER -d $DATABASE -f clean.sql
