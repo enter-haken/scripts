@@ -188,7 +188,7 @@ SET search_path TO $SCHEMA,public;
 EOT
 
 cat <<EOT > Makefile
-.PHONY: help clean generate seed createdb dropdb
+.PHONY: help clean generate seed createdb
 help:
 	@echo "clean - drops schema $SCHEMA"
 	@echo "generate - create schema, insert tables..."
@@ -209,10 +209,9 @@ seed:
 	psql -U $USER -d $DATABASE -f seed.sql
 
 createdb:
-	createdb -U $USER $DATABASE
+	if [ \`psql -U $USER -c "SELECT * from pg_database WHERE datname='$DATABASE'" | grep row | cut -c2\` -eq "0" ]; then \\
+	    createdb -U postgres $DATABASE; \\
+	fi;
 
-dropdb:
-	dropdb -U $USER $DATABASE
-
-all: clean generate seed
+all: createdb clean generate seed
 EOT
