@@ -29,7 +29,7 @@ is activated.
 
 generate erm like database schema from postgresql db
 
-    ./schema.sh | dot -Tpng > schema.png
+    $ schema.sh | dot -Tpng > schema.png
 
 * `-u|--user` database user (default: `postgres`)
 * `-d|--database` database name (default: `postgres`)
@@ -40,11 +40,23 @@ generate erm like database schema from postgresql db
 
 generate some inital sql files for bootsrapping a postgres database
 
-    db_init -u postgres -s test -d postgres
+    $ db_init -u postgres -s test -d postgres
 
 * `-u|--user` database user (default: `postgres`)
 * `-d|--database` database name (default: `postgres`)
 * `-s|--schema` database schema (default: `public`)
+
+## phoenix_init
+
+generate a new elixir phoenix application with react frontend
+
+    $ phoenix_init.sh -n application_name -s "Application name" -l "Application name - This name is shown in the app bar"
+
+## generate_react_makefile
+
+    $ generate_react_makefile
+
+This scripts generates a `Makefile` around a `create-react-app` application.
 
 ## book_init
 
