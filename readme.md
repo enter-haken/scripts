@@ -69,6 +69,19 @@ generate some inital markdown files for bootstrapping a book
 * `-f|--filename` filename used for the pdf / tex file without any extension (mandatory)
 * `-v|--pdfviewer` default pdf viewer (default `evince`)
 
+## updateLicenseIfNecessary
+
+    $ updateLicenseIfNecessary.sh
+
+Updates the years for a project with a MIT license.
+
+e.g:
+
+    The MIT License (MIT)
+    Copyright (c) 2016,2017,2018 Jan Frederik Hake
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy ...
+
 # myip
 
 gets your current external ip address
