@@ -1,6 +1,12 @@
 #!/bin/sh
-if [ ! -f LICENSE ]; then
-    break; 
+if [ ! -f ./LICENSE ]; then
+    echo "LICENSE file not found."
+    exit 0; 
+fi
+
+if [ ! -d ./.git ]; then
+    echo "not a git directory"
+    exit 0;
 fi
 
 copyright=$(git log --pretty=format:"%an|%ad"       \
