@@ -58,6 +58,12 @@ generate a new elixir phoenix application with react frontend
 
 This scripts generates a `Makefile` around a `create-react-app` application.
 
+## generate_elixir_makefile
+
+    $ generate_elixir_makefile
+
+This script generates a scaffolding `Makefile' for a `elixir` application.
+
 ## book_init
 
 generate some inital markdown files for bootstrapping a book
