@@ -62,7 +62,7 @@ This scripts generates a `Makefile` around a `create-react-app` application.
 
     $ generate_elixir_makefile
 
-This script generates a scaffolding `Makefile' for an `elixir` application.
+This script generates a scaffolding `Makefile` for an `elixir` application.
 
 ## book_init
 
