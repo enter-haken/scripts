@@ -24,6 +24,7 @@ deep_clean: clean clean_node_modules
 
 .PHONY: run
 run: 
+	if [ ! -d ./node_modules/ ]; then \$(PACKAGE_MANAGER) install; fi
 	\$(PACKAGE_MANAGER) run start
 EOT
 
