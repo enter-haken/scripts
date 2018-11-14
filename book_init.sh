@@ -93,36 +93,37 @@ cat <<EOT >99-epilogue.md
 # Last word
 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
 EOT
 
 cat <<EOT > Makefile
-.PHONY: help clean compile latex run all
+.PHONY: default
+default: compile
+
+.PHONY: help 
 help:
-	@echo "clean - delete temporary files"
-	@echo "compile - generate the book with pandoc"
-	@echo "latex - generate the latex source with pandoc"
-	@echo "run - shows the book with $PDFVIEWER"
-	@echo "all - target for: clean compile run"
+	@echo "clean - delete temporary files for $FILENAME"
+	@echo "build - generate $FILENAME with pandoc"
+	@echo "latex - generate the latex source with pandoc for $FILENAME"
+	@echo "show - shows the book with $PDFVIEWER"
 
-compile:
-	cat *.md > /tmp/book.md
-	pandoc -s /tmp/book.md -o $FILENAME.pdf
+.PHONY: build 
+build:
+	cat *.md > /tmp/$FILENAME.md
+	pandoc -s /tmp/$FILENAME.md -o $FILENAME.pdf
 
-run:
-	if [ -f $FILENAME.pdf ]; then evince $FILENAME.pdf; fi
+.PHONY: show 
+show:
+	if [ ! -f $FILENAME.pdf ]; then make compile; fi;
+	evince $FILENAME.pdf;
 
+.PHONY: latex
 latex:
-	cat *.md > /tmp/book.md
-	pandoc -s /tmp/book.md -o $FILENAME.tex
+	cat *.md > /tmp/$FILENAME.md
+	pandoc -s /tmp/$FILENAME.md -o $FILENAME.tex
 
+.PHONY: clean
 clean:
-	touch empty.pdf
-	rm *.pdf
-	touch /tmp/book.md
-	rm /tmp/book.md
-	touch book.tex
-	rm book.tex
-
-all: clean compile run
+	rm *.pdf || true
+	rm /tmp/$FILENAME.md || true
+	rm $FILENAME.tex || true
 EOT
