@@ -97,7 +97,7 @@ EOT
 
 cat <<EOT > Makefile
 .PHONY: default
-default: compile
+default: build 
 
 .PHONY: help 
 help:
