@@ -31,8 +31,8 @@ done
 set -- "$POSITIONAL[@]"
 
 if [ ! -z "$HELP" ]; then
-    echo "pheonix_init"
-    echo "======="
+    echo "init_phoenix"
+    echo "============"
     echo ""
     echo "This script generates a scaffolding for creating a phoenix application with react frontend."
     echo ""

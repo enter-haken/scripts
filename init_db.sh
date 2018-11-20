@@ -30,7 +30,7 @@ done
 set -- "$POSITIONAL[@]"
 
 if [ ! -z "$HELP" ]; then
-    echo "db_init"
+    echo "init_db"
     echo "======="
     echo ""
     echo "This script generates a scaffold for creating a database from scratch."

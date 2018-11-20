@@ -33,7 +33,7 @@ done
 set -- "$POSITIONAL[@]"
 
 if [ ! -z "$HELP" ]; then
-    echo "book_init"
+    echo "init_book"
     echo "========="
     echo ""
     echo "This script generates a scaffold for creating a book."
