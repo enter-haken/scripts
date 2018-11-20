@@ -78,6 +78,8 @@ default: compile
 .PHONY: help
 help:
 	@echo "make compile - compile the generator"
+  @echo "               When 'stack init' is executed for the first time,"
+  @echo "               this can take a while"
 	@echo "make generate - generate the site and compile the generator if necessary"
 	@echo "make watch - serves the site at http://localhost:8000 and generates the site if necessary"
 	@echo "make clean - deletes the generated content"
