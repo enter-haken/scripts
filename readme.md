@@ -107,5 +107,5 @@ Contact
 
 Jan Frederik Hake, <jan_hake@gmx.de>. [@enter_haken](https://twitter.com/enter_haken) on Twitter.
 
-[stack]: https;//docs.haskellstack.org/en/stable/install_and_upgrade
+[stack]: https://docs.haskellstack.org/en/stable/install_and_upgrade
 [hakyll]: https://jaspervdj.be/hakyll
