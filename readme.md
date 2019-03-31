@@ -110,6 +110,17 @@ sets the backlight value for intel displays
 
 sets the`/sys/class/backlight/intel_backlight/brightness` value to 3000
 
+# random_image.sh
+
+gets a randomly generated image 
+
+    $ ./random_image.sh -x 100 -y 100 -f test.jpg
+
+will produce
+
+![test][test]
+
+
 Contact
 -------
 
@@ -117,3 +128,4 @@ Jan Frederik Hake, <jan_hake@gmx.de>. [@enter_haken](https://twitter.com/enter_h
 
 [stack]: https://docs.haskellstack.org/en/stable/install_and_upgrade
 [hakyll]: https://jaspervdj.be/hakyll
+[test]: test.jpg
