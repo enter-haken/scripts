@@ -102,6 +102,14 @@ e.g:
 
 gets your current external ip address
 
+# brightness.sh
+
+sets the backlight value for intel displays
+
+     $ sudo ./brightness.sh -v 3000
+
+sets the`/sys/class/backlight/intel_backlight/brightness` value to 3000
+
 Contact
 -------
 
