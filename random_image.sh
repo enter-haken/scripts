@@ -19,7 +19,10 @@ do
       FILENAME="$2"
       shift 2 # shift to next parameter
       ;;
-
+    -m|--mode)
+      MODE="$2"
+      shift 2 # shift to next parameter
+      ;;
     -h|--help)
       HELP="HELP"
       shift 1 # shift to next parameter
@@ -41,15 +44,26 @@ if [ ! -z "$HELP" ]; then
 fi
 
 if [ -z "$X" ]; then
-  X=1920
+  X=3840
 fi
 
 if [ -z "$Y" ]; then
-  Y=1080
+  Y=2160
 fi
+
+if [ -z "$MODE" ]; then
+  MODE="points"
+fi
+
+
 
 if [ -z "$FILENAME" ]; then
   FILENAME="jpg:-"
 fi
 
-head -c "$((3*X*Y))" /dev/urandom | convert -depth 8 -size "${X}x${Y}" RGB:- $FILENAME
+case "$MODE" in
+  "points") head -c "$((3*X*Y))" /dev/urandom | convert -depth 8 -size "${X}x${Y}" RGB:- $FILENAME;;
+  "swirl") convert -size  "${X}x${Y}" gradient: -swirl $(shuf -i 1-180 -n 1) $FILENAME;;
+esac
+
+#  http://www.imagemagick.org/Usage/canvas/

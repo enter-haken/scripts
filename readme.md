@@ -120,6 +120,11 @@ will produce
 
 ![test][test]
 
+    $ ./random_image.sh -x 100 -y 100 -m swirl -f test2.jpg
+
+will produce
+
+![test2][test2]
 
 Contact
 -------
@@ -129,3 +134,4 @@ Jan Frederik Hake, <jan_hake@gmx.de>. [@enter_haken](https://twitter.com/enter_h
 [stack]: https://docs.haskellstack.org/en/stable/install_and_upgrade
 [hakyll]: https://jaspervdj.be/hakyll
 [test]: test.jpg
+[test2]: test2.jpg
