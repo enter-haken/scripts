@@ -44,11 +44,11 @@ if [ ! -z "$HELP" ]; then
 fi
 
 if [ -z "$X" ]; then
-  X=3840
+  X=1920
 fi
 
 if [ -z "$Y" ]; then
-  Y=2160
+  Y=1080
 fi
 
 if [ -z "$MODE" ]; then
