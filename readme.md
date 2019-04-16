@@ -126,6 +126,12 @@ will produce
 
 ![test2][test2]
 
+# clone.sh
+
+creates a directory for a given github user and clones every repository into it
+
+    $ ./clone.sh -u enter-haken
+
 Contact
 -------
 
