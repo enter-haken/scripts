@@ -132,6 +132,34 @@ creates a directory for a given github user and clones every repository into it
 
     $ ./clone.sh -u enter-haken
 
+# picsum.sh
+
+downloads some random images from [picsum.photos](https://picsum.photos/) an save them with an uuid + .jpg
+
+    $ ./picsum.sh
+      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                     Dload  Upload   Total   Spent    Left  Speed
+    100  5151    0  5151    0     0  21197      0 --:--:-- --:--:-- --:--:-- 21197
+    --2019-05-20 15:10:35--  https://picsum.photos/id/0/5616/3744
+    Resolving picsum.photos (picsum.photos)... 104.37.178.1
+    Connecting to picsum.photos (picsum.photos)|104.37.178.1|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 997119 (974K) [image/jpeg]
+    Saving to: ‘0de7ff9e-f174-43df-94e5-c9830dce8e1c.jpg’
+    
+    0de7ff9e-f174-43df-94e5-c9830dce 100%[==========================================================>] 973.75K  5.05MB/s    in 0.2s
+    
+    2019-05-20 15:10:35 (5.05 MB/s) - ‘0de7ff9e-f174-43df-94e5-c9830dce8e1c.jpg’ saved [997119/997119]
+
+    ...
+
+    $ ls -1
+    00dbbf9d-c869-4bc2-85e5-90ea01746b3d.jpg
+    0108769e-e510-442f-a30f-bdc520023a40.jpg
+    0de7ff9e-f174-43df-94e5-c9830dce8e1c.jpg
+    ...
+
+
 Contact
 -------
 
