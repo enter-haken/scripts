@@ -126,11 +126,12 @@ will produce
 
 ![test2][test2]
 
-# clone.sh
+# clone_or_pull.py 
 
-creates a directory for a given github user and clones every repository into it
+creates a directory for a given github user and clones every repository into it.
+If the directory is available, a `git pull` is tried.
 
-    $ ./clone.sh -u enter-haken
+    $ ./clone_or_pull.py -u enter-haken
 
 # picsum.sh
 
