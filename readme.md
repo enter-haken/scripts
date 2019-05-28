@@ -131,6 +131,10 @@ will produce
 creates a directory for a given github user and clones every repository into it.
 If the directory is available, a `git pull` is tried.
 
+It also creates a file `repo_descriptions.txt` with a list of repositories and their descriptions.
+Only the repositories with a description will be listed.
+The `repo_descriptions.txt` file will be recreated on every invocation of `clone_or_pull.py`
+
     $ ./clone_or_pull.py -u enter-haken
 
 # picsum.sh

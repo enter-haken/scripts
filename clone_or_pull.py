@@ -27,11 +27,17 @@ if __name__ == '__main__':
         repos.extend(res.json())
 
     public_urls = [repo['html_url'] for repo in repos]
+    descriptions = [repo['name'] + ': ' + repo['description'] for repo in repos if repo['description']]
 
     if not os.path.isdir(args.user):
         os.mkdir(args.user)
 
     os.chdir(args.user)
+
+    f = open("repo_descriptions.txt","w")
+    for description in descriptions:
+        f.write(description + '\n')
+    f.close()
 
     for repo in public_urls:
         repo_relative_path = repo.rsplit('/', 1)[-1]
