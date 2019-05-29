@@ -11,6 +11,11 @@ Shows the current state of the battery for a notebook.
 
 make a `git pull` on all subdirectories.
 
+    #!/bin/bash
+    ls | xargs -I{} git -C {} pull
+
+This script is quiet simple. See also [`clone_or_pull`](clone_or_pull.py)
+
 ## lock.sh
 
 locks the current stream when 
@@ -21,9 +26,15 @@ is activated.
 
 ## docker_reset.sh
 
-* stops the docker deamon
-* delete /var/lib/docker recursively
-* starts the docker daemon
+This script is a kind of hard reset for all docker containers
+
+    #!/bin/bash
+    
+    sudo /etc/init.d/docker stop
+    sudo rm /var/lib/docker/ -rf
+    sudo /etc/init.d/docker start
+
+use with care.
 
 ## schema.sh
 
@@ -98,9 +109,12 @@ e.g:
     
     Permission is hereby granted, free of charge, to any person obtaining a copy ...
 
-# myip
+# myip.sh
 
 gets your current external ip address
+
+    #!/bin/bash
+    curl -s https://ipinfo.io/ip 
 
 # brightness.sh
 
@@ -135,7 +149,24 @@ It also creates a file `repo_descriptions.txt` with a list of repositories and t
 Only the repositories with a description will be listed.
 The `repo_descriptions.txt` file will be recreated on every invocation of `clone_or_pull.py`
 
+When you put the script directory into your path, you can execute it from everywhere within the filesystem.
+
     $ ./clone_or_pull.py -u enter-haken
+
+# repo_list.sh
+
+When you have cloned repositories for several users, you can get an overview with `repo_list.sh`.
+
+    #!/bin/bash
+    
+    for user in $(ls -1);
+    do
+      cat $user/repo_desc* | sed -e 's/^/'"$user"'\//';
+    done
+
+When you pipe the result to `vim`, you can use the `gf` command to jump directly into the project directory.
+
+    ./repo_list.sh | sort | uniq | vim -
 
 # picsum.sh
 
@@ -164,6 +195,15 @@ downloads some random images from [picsum.photos](https://picsum.photos/) an sav
     0de7ff9e-f174-43df-94e5-c9830dce8e1c.jpg
     ...
 
+The script
+
+    #!/bin/bash
+    for image in $(curl https://picsum.photos/v2/list | jq '.[] | .download_url' -r);
+    do
+      wget -O $(uuidgen).jpg $image;
+    done
+
+uses `jq` for querying the json response.
 
 Contact
 -------
