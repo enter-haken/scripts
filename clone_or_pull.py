@@ -42,6 +42,8 @@ if __name__ == '__main__':
     for repo in public_urls:
         repo_relative_path = repo.rsplit('/', 1)[-1]
         if not os.path.isdir(repo_relative_path):
+            print("cloning {} into {}".format(repo, repo_relative_path))
             os.system("git clone {}".format(repo))
         else:
+            print("pulling {} into {}".format(repo, repo_relative_path))
             os.system("git -C {}  pull".format(repo_relative_path))

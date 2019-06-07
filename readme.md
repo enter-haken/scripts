@@ -153,6 +153,27 @@ When you put the script directory into your path, you can execute it from everyw
 
     $ ./clone_or_pull.py -u enter-haken
 
+When you have a folder like `~/src/other/github` and you like to do a clone or pull 
+for all subdirectories you can use a small script like
+
+    #!/bin/bash
+    
+    echo "starting cloning at $(date --iso-8601=seconds)" > /tmp/clone_or_pull.log
+    cd ~/src/other/github/
+    
+    for user in $(ls -1); do
+      clone_or_pull -u $user &>> /tmp/clone_or_pull.log
+    done
+
+In this case, I have created an symbolic link `clone_or_pull`, which is in my path.
+
+You can create a cron job (Vixie Cron)
+
+    0 1 * * * ~/.local/bin/update_other_repos.sh
+
+to update all github repositories at 1am every day.
+
+
 # repo_list.sh
 
 When you have cloned repositories for several users, you can get an overview with `repo_list.sh`.
