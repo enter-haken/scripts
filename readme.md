@@ -142,8 +142,17 @@ will produce
 
 # clone_or_pull.py 
 
-creates a directory for a given github user and clones every repository into it.
+Creates a directory for a given github user and clones every repository into it.
 If the directory is available, a `git pull` is tried.
+
+    usage: clone_or_pull [-h] -u USER [-f]
+    
+    gets days left in relation to a given date 
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -u USER, --user USER  github user name (default: None)
+      -f, --with-forks      include forked repositories (default: False)
 
 It also creates a file `repo_descriptions.txt` with a list of repositories and their descriptions.
 Only the repositories with a description will be listed.
