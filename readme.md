@@ -182,6 +182,17 @@ You can create a cron job (Vixie Cron)
 
 to update all github repositories at 1am every day.
 
+# get_forks.py
+
+Get a list of forked repositories for a given github user
+
+    usage: get_forks.py [-h] -u USER
+    
+    gets a list of forks for a given github user 
+    
+    optional arguments:
+      -h, --help            show this help message and exit
+      -u USER, --user USER  github user name (default: None)
 
 # repo_list.sh
 
