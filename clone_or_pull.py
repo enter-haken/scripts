@@ -5,7 +5,23 @@ import json
 import os 
 import subprocess 
 
+import time
+
 import argparse
+
+def get_rate_limit_for(response):
+    return int(response.headers["X-RateLimit-Remaining"])
+
+def rate_limit_reached_for(response):
+    return get_rate_limit_for(response) < 2
+
+def sleep_if_necessary_for(response):
+    if rate_limit_reached_for(response):
+        print("sleep for one hour, because the rate limit has been reached ...")
+        time.sleep(3600)
+
+def print_current_rate_limit_for(response):
+    print("current rate_limit: {}".format(get_rate_limit_for(response)))
 
 if __name__ == '__main__':
     PARSER = argparse.ArgumentParser(
@@ -21,6 +37,9 @@ if __name__ == '__main__':
     args = PARSER.parse_args()
 
     res = requests.get("https://api.github.com/users/{}/repos?per_page=100".format(args.user))
+    print_current_rate_limit_for(res)
+    sleep_if_necessary_for(res)
+
     repos = res.json()
 
     if not args.with_forks:
@@ -29,6 +48,9 @@ if __name__ == '__main__':
     while 'next' in res.links.keys():
         res=requests.get(res.links['next']['url'])
         repos.extend(res.json())
+
+        print_current_rate_limit_for(res)
+        sleep_if_necessary_for(res)
 
     descriptions = [repo['name'] + ': ' + repo['description'] for repo in repos if repo['description']]
 

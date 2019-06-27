@@ -158,6 +158,10 @@ It also creates a file `repo_descriptions.txt` with a list of repositories and t
 Only the repositories with a description will be listed.
 The `repo_descriptions.txt` file will be recreated on every invocation of `clone_or_pull.py`
 
+Due to the github api has a [rate limit](https://developer.github.com/v3/#rate-limiting) 
+for unauthorized request (currently up to 60 request per hour), the clone or pull request will sleep for 
+**one hour** when the rate limit is reached. 
+
 When you put the script directory into your path, you can execute it from everywhere within the filesystem.
 
     $ ./clone_or_pull.py -u enter-haken
