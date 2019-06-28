@@ -163,11 +163,18 @@ for unauthorized request (currently up to 60 request per hour), the clone or pul
 **one hour** when the rate limit is reached. 
 
 When you put the script directory into your path, you can execute it from everywhere within the filesystem.
+In my case, I have created an symbolic link `clone_or_pull`, which is in my path.
 
-    $ ./clone_or_pull.py -u enter-haken
+    $ clone_or_pull -u enter-haken
 
-When you have a folder like `~/src/other/github` and you like to do a clone or pull 
-for all subdirectories you can use a small script like
+When you have a folder like `~/src/other/complete` and you like to do a clone or pull 
+for all subdirectories you can use a small script like `update_other_repos.sh` as seen below, 
+to update multiple users.
+
+# update_other_repos.sh
+
+Executes a `clone_or_pull.py` for every subdirectory within the current path.
+The result is written to `/tmp/clone_or_pull.log`.
 
     #!/bin/bash
     
@@ -177,8 +184,7 @@ for all subdirectories you can use a small script like
     for user in $(ls -1); do
       clone_or_pull -u $user &>> /tmp/clone_or_pull.log
     done
-
-In this case, I have created an symbolic link `clone_or_pull`, which is in my path.
+    echo "stoped cloning at $(date --iso-8601=seconds)" >> /tmp/clone_or_pull.log
 
 You can create a cron job (Vixie Cron)
 
