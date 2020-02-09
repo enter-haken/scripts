@@ -3,11 +3,11 @@ scripts
 
 some scripts for daily usage
 
-## battery_power.sh
+## `battery_power.sh`
 
 Shows the current state of the battery for a notebook.
 
-## pullAllSubdirectoryies.sh
+## `pullAllSubdirectoryies.sh`
 
 make a `git pull` on all subdirectories.
 
@@ -16,7 +16,7 @@ make a `git pull` on all subdirectories.
 
 This script is quiet simple. See also [`clone_or_pull`](clone_or_pull.py)
 
-## lock.sh
+## `lock.sh`
 
 locks the current stream when 
 
@@ -24,7 +24,7 @@ locks the current stream when
 
 is activated.
 
-## docker_reset.sh
+## `docker_reset.sh`
 
 This script is a kind of hard reset for all docker containers
 
@@ -36,7 +36,7 @@ This script is a kind of hard reset for all docker containers
 
 use with care.
 
-## schema.sh
+## `schema.sh`
 
 generate erm like database schema from postgresql db
 
@@ -47,7 +47,7 @@ generate erm like database schema from postgresql db
 * `-s|--schema` database schema (default: `public`)
 
 
-## init_db 
+## `init_db`
 
 generate some inital sql files for bootsrapping a postgres database
 
@@ -57,25 +57,25 @@ generate some inital sql files for bootsrapping a postgres database
 * `-d|--database` database name (default: `postgres`)
 * `-s|--schema` database schema (default: `public`)
 
-## init_phoenix 
+## `init_phoenix`
 
 generate a new elixir phoenix application with react frontend
 
     $ init_phoenix.sh -n application_name -s "Application name" -l "Application name - This name is shown in the app bar"
 
-## generate_react_makefile
+## `generate_react_makefile`
 
     $ generate_react_makefile.sh
 
 This scripts generates a `Makefile` around a `create-react-app` application.
 
-## generate_elixir_makefile
+## `generate_elixir_makefile`
 
     $ generate_elixir_makefile.sh
 
 This script generates a scaffolding `Makefile` for an `elixir` application.
 
-## init_book 
+## `init_book`
 
 generate some inital markdown files for bootstrapping a book
 
@@ -86,7 +86,7 @@ generate some inital markdown files for bootstrapping a book
 * `-f|--filename` filename used for the pdf / tex file without any extension (mandatory)
 * `-v|--pdfviewer` default pdf viewer (default `evince`)
 
-## init_hakyll
+## `init_hakyll`
 
 generate a scaffold for a [hakyll][hakyll] project.
 
@@ -96,7 +96,7 @@ generate a scaffold for a [hakyll][hakyll] project.
 
 This script needs [stack][stack] installed.
 
-## updateLicenseIfNecessary
+## `updateLicenseIfNecessary`
 
     $ updateLicenseIfNecessary.sh
 
@@ -109,14 +109,14 @@ e.g:
     
     Permission is hereby granted, free of charge, to any person obtaining a copy ...
 
-# myip.sh
+# `myip.sh`
 
 gets your current external ip address
 
     #!/bin/bash
     curl -s https://ipinfo.io/ip 
 
-# brightness.sh
+# `brightness.sh`
 
 sets the backlight value for intel displays
 
@@ -124,7 +124,7 @@ sets the backlight value for intel displays
 
 sets the`/sys/class/backlight/intel_backlight/brightness` value to 3000
 
-# random_image.sh
+# `random_image.sh`
 
 gets a randomly generated image 
 
@@ -140,7 +140,7 @@ will produce
 
 ![test2][test2]
 
-# clone_or_pull.py 
+# `clone_or_pull.py`
 
 Creates a directory for a given github user and clones every repository into it.
 If the directory is available, a `git pull` is tried.
@@ -171,7 +171,7 @@ When you have a folder like `~/src/other/complete` and you like to do a clone or
 for all subdirectories you can use a small script like `update_other_repos.sh` as seen below, 
 to update multiple users.
 
-# update_other_repos.sh
+# `update_other_repos.sh`
 
 Executes a `clone_or_pull.py` for every subdirectory within the current path.
 The result is written to `/tmp/clone_or_pull.log`.
@@ -192,7 +192,7 @@ You can create a cron job (Vixie Cron)
 
 to update all github repositories at 1am every day.
 
-# get_forks.py
+# `get_forks.py`
 
 Get a list of forked repositories for a given github user
 
@@ -204,7 +204,7 @@ Get a list of forked repositories for a given github user
       -h, --help            show this help message and exit
       -u USER, --user USER  github user name (default: None)
 
-# repo_list.sh
+# `repo_list.sh`
 
 When you have cloned repositories for several users, you can get an overview with `repo_list.sh`.
 
@@ -219,7 +219,7 @@ When you pipe the result to `vim`, you can use the `gf` command to jump directly
 
     ./repo_list.sh | sort | uniq | vim -
 
-# picsum.sh
+# `picsum.sh`
 
 downloads some random images from [picsum.photos](https://picsum.photos/) an save them with an uuid + .jpg
 
@@ -256,6 +256,27 @@ The script
 
 uses `jq` for querying the json response.
 
+# `uuid`
+
+This is a shortcut for
+
+    $ cat /proc/sys/kernel/random/uuid
+
+# `remember`
+
+This is a helper script for the [brain project][brain].
+
+It does either preforms a search like
+
+    $ remember.sh -s linux
+
+or shows the complete `brain`
+
+    $ remember.sh
+
+Take a look at the [brain project][brain] for further information.
+
+
 Contact
 -------
 
@@ -265,3 +286,4 @@ Jan Frederik Hake, <jan_hake@gmx.de>. [@enter_haken](https://twitter.com/enter_h
 [hakyll]: https://jaspervdj.be/hakyll
 [test]: test.jpg
 [test2]: test2.jpg
+[brain]: https://github.com/enter-haken/brain/
