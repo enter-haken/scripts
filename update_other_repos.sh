@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "starting cloning at $(date --iso-8601=seconds)" > /tmp/clone_or_pull.log
 cd ~/src/other/complete/

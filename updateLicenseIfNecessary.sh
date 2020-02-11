@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [ ! -f ./LICENSE ]; then
     echo "LICENSE file not found."
     exit 0; 

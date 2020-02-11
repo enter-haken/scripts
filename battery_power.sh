@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 capacty_level=$(cat /sys/class/power_supply/BAT0/capacity_level);
 capacity=$(cat /sys/class/power_supply/BAT0/capacity);

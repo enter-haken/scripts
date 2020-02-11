@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/usr/bin/env bash
 cat /proc/sys/kernel/random/uuid

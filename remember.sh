@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -18,6 +18,3 @@ if [ ! -z "$SEARCH" ]; then
 else
   brain --all | fdp -Tpng | feh -Z -
 fi
-
-
-
