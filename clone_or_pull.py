@@ -33,6 +33,7 @@ if __name__ == '__main__':
 
     PARSER.add_argument('-u', '--user', required=True, help='github user name')
     PARSER.add_argument('-f', '--with-forks', action="store_true",  help='include forked repositories')
+    PARSER.add_argument('-g', '--use-git-url', action="store_true",  help='use git urls')
 
     args = PARSER.parse_args()
 
@@ -65,7 +66,10 @@ if __name__ == '__main__':
     f.close()
 
     for repo in repos:
-        repo = repo['html_url']
+        if (args.use_git_url):
+            repo = repo['git_url']
+        else:
+            repo = repo['html_url']
 
         repo_relative_path = repo.rsplit('/', 1)[-1]
 
