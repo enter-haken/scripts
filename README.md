@@ -276,6 +276,29 @@ or shows the complete `brain`
 
 Take a look at the [brain project][brain] for further information.
 
+### `html`
+
+generates html files from markdown documents using milligram css framework.
+
+```
+creating Makefile
+create package.json
+
+please install pandoc, nodejs and inotifywait before proceeding
+
+start editing index.md
+
+* make: build index.html
+* make clean: delete build artefacts
+* make wait: build index.html when index.md is saved
+```
+
+when you want to see the result, you can start a local web server.
+
+```
+$ python -m http.server
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+```
 
 Contact
 -------
